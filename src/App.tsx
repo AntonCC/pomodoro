@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import Title from './components/title/title'
 import PomodoroBar from './components/pomodoro-bar/pomodoro-bar'
-import Button from './components/button/button'
+import Timer from './components/timer/timer'
 
 const StyledApp = styled.div`
   width: 100%;
@@ -14,6 +14,10 @@ const StyledApp = styled.div`
   align-items: center;
 `
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 const App: React.FC = () => {
@@ -22,6 +26,7 @@ const App: React.FC = () => {
       <Container>
         <Title />
         <PomodoroBar />
+        <Timer />
       </Container>
     </StyledApp>  
   );

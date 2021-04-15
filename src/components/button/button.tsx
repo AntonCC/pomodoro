@@ -1,22 +1,55 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled, { css } from 'styled-components'
 
-const StyledButton = styled.button`
+
+interface Props {
+  buttonId: number,
+  middle?: boolean,
+  active: number,
+  setActive: (toActivate: number) => void
+}
+
+interface ButtonProps {
+  // using just id was causing problems
+  buttonId: number,
+  middle?: boolean,
+  active: number
+}
+
+const StyledButton = styled.button<ButtonProps>`
   padding: 1.5rem 3.5rem;
   outline: none;
   border: none;
-  background: ${(props) => props.theme.colors.red};
-  color: ${(props) => props.theme.colors.darkBlue};
   border-radius: 40px;
-  ${({ className }) => className && css`margin: 0 1rem;`}
+  cursor: pointer;
+  ${({ middle }) => 
+    middle && 
+      css`
+        margin: 0 1rem;
+      `
+  };
+  ${({ buttonId, active}) => 
+    buttonId === active
+      ? css`
+          background: ${({ theme }) => theme.colors.red};
+        `
+      : css`
+          color: ${({ theme }) => theme.colors.grey};
+          background: ${({ theme }) => theme.colors.darkestBlue};
+        `
+  }
 `
-interface Props {
-  className?: string
-}
+  /* ${({ active }) => 
+    !active && 
+      css`
+        color: ${({ theme }) => theme.colors.grey};
+        background: ${({ theme }) => theme.colors.darkBlue};
+      `
+  }; */
+const Button: React.FC<Props> = ({ buttonId, active, setActive, middle, children }) => {
 
-const Button: React.FC<Props> = ({ className, children }) => {
   return (
-    <StyledButton className={className}>
+    <StyledButton buttonId={buttonId} active={active} middle={middle} onClick={() => setActive(buttonId)}>
       <p>
         {children}
       </p>

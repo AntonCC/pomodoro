@@ -5,6 +5,7 @@ const StyledTitle = styled.div`
   font-size: 3.2rem;
   margin-bottom: 5.5rem;
   color: ${(props) => props.theme.colors.grey};
+  text-align: center;
 `
 
 const Title: React.FC = () => {

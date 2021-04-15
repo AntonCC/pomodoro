@@ -1,23 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import Button from '../button/button'
 
 const StyledPomodoroBar = styled.div`
-  /* width: 373px;
-  height: 63px; */
   padding: 1rem;
   background: ${(props) => props.theme.colors.darkestBlue};
   border-radius: 40px;
-  }
+  margin-bottom: 4.5rem;
+  z-index: 5;
 `
 
 const PomodoroBar: React.FC = () => {
+  const [active, setActive] = useState(1)
+
   return (
     <StyledPomodoroBar>
-      <Button>pomodoro</Button>
-      <Button className='middle'>short break</Button>
-      <Button>long break</Button>
+      <Button buttonId={1} active={active} setActive={setActive}>pomodoro</Button>
+      <Button buttonId={2} active={active} setActive={setActive} middle>short break</Button>
+      <Button buttonId={3} active={active} setActive={setActive}>long break</Button>
     </StyledPomodoroBar>
   )
 }
